@@ -18,7 +18,7 @@ module D2S3
 
       @@access_key_id     = config[RAILS_ENV]['access_key_id']
       @@secret_access_key = config[RAILS_ENV]['secret_access_key']
-      @@bucket            = config[RAILS_ENV]['bucket_name']
+      @@bucket            = config[RAILS_ENV]['bucket']
       
       unless @@access_key_id && @@secret_access_key && @@bucket
         raise "Please configure your S3 settings in #{filename}."
