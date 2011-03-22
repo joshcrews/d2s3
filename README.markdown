@@ -30,7 +30,6 @@ The above helper will generate the following similar HTML form, generating all o
 		  <input type="hidden" name="success_action_redirect" value="/image_processing_url">
 		  <input type="hidden" name="policy" value="YOUR_POLICY_DOCUMENT_BASE64_ENCODED">
 		  <input type="hidden" name="signature" value="YOUR_CALCULATED_SIGNATURE">
-		  <input type="hidden" name="Content-Type" value="image/jpeg">
 		  <input name="file" type="file"><input type="submit" value="Upload" class="button" id="upload-button">
 		</form>
 		

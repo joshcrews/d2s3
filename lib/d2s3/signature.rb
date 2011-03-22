@@ -12,27 +12,6 @@ module D2S3
       return binb2b64(core_hmac_sha1(key, data))
     end
 
-    # Absolute barebones "unit" tests
-    def assert(expr)
-      raise 'Assertion failed' unless (expr)
-    end
-
-    def self_test
-      num, cnt = [1732584193, 5]
-
-      assert(core_sha1(str2binb('abc'), 'abc'.length) == [-519653305, -1566383753, -2070791546, -753729183, -204968198])
-      assert(rol(num, cnt) == -391880660)
-      assert(safe_add(2042729798, num) == -519653305)
-      assert((num.js_shl(cnt)) == -391880672)
-      assert((num.js_shr_zf(32 - cnt)) == 12)
-      assert(sha1_ft(0, -271733879, -1732584194, 271733878) == -1732584194)
-      assert(sha1_kt(0) == 1518500249)
-      assert(safe_add(safe_add(rol(num, cnt), sha1_ft(0, -271733879, -1732584194, 271733878)), safe_add(safe_add(-1009589776, 1902273280), sha1_kt(0))) == 286718899)
-      assert(str2binb('foo bar hey there') == [1718578976, 1650553376, 1751480608, 1952998770, 1694498816])
-      assert(hex_sha1("abc") == "a9993e364706816aba3e25717850c26c9cd0d89d")
-      assert(b64_hmac_sha1("foo", "abc") == "frFXMR9cNoJdsSPnjebZpBhUKzI=")
-    end
-
     # Calculate the SHA-1 of an array of big-endian words, and a bit length
     def core_sha1(x, len)
       # append padding
@@ -143,7 +122,7 @@ module D2S3
       i = 0
       while(i < str.length * $chrsz)
         bin[i>>5] ||= 0
-        bin[i>>5] |= (str.bytes.to_a[i / $chrsz] & mask) << (32 - $chrsz - i%32)
+        bin[i>>5] |= (str[i / $chrsz].ord & mask) << (32 - $chrsz - i%32)
         i += $chrsz
       end
       return bin
